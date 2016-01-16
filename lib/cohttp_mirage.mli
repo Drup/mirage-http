@@ -32,6 +32,7 @@ end
 
 module Server_with_conduit : sig
   include Cohttp_lwt.Server with type IO.conn = Conduit_mirage.Flow.flow
+  val listen: t -> IO.conn -> unit Lwt.t
   val connect:
     Conduit_mirage.t ->
     [> `Ok of Conduit_mirage.server -> t -> unit Lwt.t ] Lwt.t
